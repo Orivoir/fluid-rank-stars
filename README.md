@@ -3,8 +3,8 @@ This is an micro-library JavaScript &amp;&amp; CSS3 define and custom your rank 
 
 ## Access CDN Via deploy git-pages
 
-[script cdn](https://orivoir.github.io/fluid-rank-stars/fluid-rank-stars/script.js)
-[style cdn](https://orivoir.github.io/fluid-rank-stars/fluid-rank-stars/style.css)
-[usage](https://orivoir.github.io/fluid-rank-stars/usage/index.html)
+..* [script cdn](https://orivoir.github.io/fluid-rank-stars/fluid-rank-stars/script.js)
+..* [style cdn](https://orivoir.github.io/fluid-rank-stars/fluid-rank-stars/style.css)
+..* [usage](https://orivoir.github.io/fluid-rank-stars/usage/index.html)
         
   
