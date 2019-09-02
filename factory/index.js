@@ -2,6 +2,12 @@ Node.prototype.on = Node.prototype.addEventListener ;
 
 ( d => (
 
+    /**
+     * first script fluid rank factory
+     * warn this script is not integrable
+     * this is first prototype
+     */
+
     d.addEventListener( 'DOMContentLoaded' , () => {
             
         d.sel = d.querySelector ;

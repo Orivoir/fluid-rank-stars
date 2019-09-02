@@ -38,24 +38,9 @@ const fluidRankInit = ({
      * define config property of fluidRank
      * save in the property window object 
      */
-    window.fluidRankProperties = {
-        onValid: onValid instanceof Function ?
-            onValid :
-            () => console.warn('you have dont define a callback after valid rank fluidRank give an onValid param with a callback') ,
-        size:   typeof size === 'string' ||
-                typeof size === 'number' &&
-                !isNaN( size ) ? 
-            size: 42 ,
-        flex: ( typeof flex === 'string' && /$f(lex)?^/i.test( flex.trim() ) ) || flex ? true: false ,
-        autoResponsive: autoResponsive ? true: false ,
-        background: typeof background === 'object' && (
-            Object.keys( background )
-                .filter( property => (
-                    ['default' , 'active' ].includes( property ) && typeof background[ property ]
-                )
-            ).length === 2 ? [ background.default , background.active ] : [ 'rgb(192,192,192)' , '#7e701f' ]
-        )
-    } ;
+    window.initRankProperties( {
+        background , size , onValid , flex , autoResponsive
+    } ) ;
 
     if( !contains || !contains.length )
         return ; // manually exec window.fluidRank( contains: Node ): void , becauze you have dont define a container in the DOM
@@ -70,34 +55,36 @@ const fluidRankInit = ({
     /**
      * on exit contains
      */
-    document.addEventListener('mousemove' , e => {
-
-        if( !window.fluidRankProperties.contains || !window.fluidRankProperties.contains.length )
-            return ; // dont contains define
-        
-        window.fluidRankProperties.contains.map( contain => {
-
-            if( contain.fluidRankState.isRanked )
-                return ; /* user already valid this rank */
-                
-            const coo = { x: e.clientX || e.pageX , y: e.pageY || e.clientY } ;
-
-            if(
-                coo.x >= contain.offsetLeft && coo.x <= contain.offsetLeft + contain.offsetWidth &&
-                coo.y >= contain.offsetTop && coo.y <= contain.offsetTop + contain.offsetHeight
-            )
-                return ; /* mouse is in this contain */
-
-            [...contain.fluidRankState.stars].map( star => star.style.background = window.fluidRankProperties.background[0] ) ;
-            contain.fluidRankState.all = 0;
-            contain.fluidRankState.parital = 0;
-        } ) ;
-
-    } ) ;
+    document.addEventListener('mousemove' , onDocumentMove ) ;
 
 
     return contains.length ;
 }
+
+const onDocumentMove = e => {
+
+    if( !window.fluidRankProperties.contains || !window.fluidRankProperties.contains.length )
+        return ; // dont contains define
+    
+    window.fluidRankProperties.contains.map( contain => {
+
+        if( contain.fluidRankState.isRanked )
+            return ; /* user already valid this rank */
+            
+        const coo = { x: e.clientX || e.pageX , y: e.pageY || e.clientY } ;
+
+        if(
+            coo.x >= contain.offsetLeft && coo.x <= contain.offsetLeft + contain.offsetWidth &&
+            coo.y >= contain.offsetTop && coo.y <= contain.offsetTop + contain.offsetHeight
+        )
+            return ; /* mouse is in this contain */
+
+        [...contain.fluidRankState.stars].map( star => star.style.background = window.fluidRankProperties.background[0] ) ;
+        contain.fluidRankState.all = 0;
+        contain.fluidRankState.parital = 0;
+    } ) ;
+
+} ;
 
 ( w => {
 
@@ -263,8 +250,29 @@ const fluidRankInit = ({
             contain.classList.add('auto-responsive');
     } ,
 
-    w.fluidRankResponsive = function() {
+    w.initRankProperties = function( properties ) {
 
+        this.window.fluidRankProperties = {
+            onValid: properties.onValid instanceof Function ?
+                properties.onValid :
+                () => console.warn('you have dont define a callback after valid rank fluidRank give an onValid param with a callback') ,
+            size:   typeof properties.size === 'string' ||
+                    typeof properties.size === 'number' &&
+                    !isNaN( properties.size ) ? 
+                properties.size: 42 ,
+            flex: ( typeof properties.flex === 'string' && /$f(lex)?^/i.test( properties.flex.trim() ) ) || properties.flex ? true: false ,
+            autoResponsive: properties.autoResponsive ? true: false ,
+            background: typeof properties.background === 'object' && (
+                Object.keys( properties.background )
+                    .filter( property => (
+                        ['default' , 'active' ].includes( property ) && typeof properties.background[ property ]
+                    )
+                ).length === 2 ? [ background.default , background.active ] : [ 'rgb(192,192,192)' , '#7e701f' ]
+            ) ,
+            onChange: properties.onChange instanceof Function ?
+                properties.onChange :
+                () => {/* silence is <feature /> */}
+        } ;
     }
 
 } )( window ) ;
