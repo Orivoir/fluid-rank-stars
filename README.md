@@ -1,5 +1,5 @@
 # fluid-rank-stars
-###This is an micro-library JavaScript &amp;&amp; CSS3 define and custom your rank system thinks only finally onValid logic &lt;/> 
+* This is an micro-library JavaScript &amp;&amp; CSS3 define and custom your rank system thinks only finally onValid logic &lt;/>*
 
 ## Access CDN Via deploy git-pages
 
