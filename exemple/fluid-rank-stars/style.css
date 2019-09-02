@@ -1,0 +1,64 @@
+.contain-fluid-rank {
+
+    /* for debug dim block */
+    /* border: 1px solid red; */
+    /* for debug dim block */
+
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+.contain-fluid-rank.valid {
+
+    cursor: default;
+}
+
+.contain-fluid-rank .item-fluid-rank {
+
+    margin: 0;
+    padding: 0;
+    border: none;
+    /* default size (px) */
+    width: 42px;
+    height: 42px;
+
+    /*
+    * draw star in the box with clip-path feature try out [https://bennettfeely.com/clippy/]
+    */
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+
+    /**
+    * default background out star
+    */
+    background: rgb(192,192,192) ;
+}
+
+.contain-fluid-rank.flex .item-fluid-rank ,
+.contain-fluid-rank-flex .item-fluid-rank
+{
+    display: inline-block;
+}
+
+
+@media screen and (max-width: 900px) , (max-height: 575px) {
+
+    .contain-fluid-rank.auto-responsive .item-fluid-rank {
+        
+        width: 34px!important;
+        height: 34px!important;
+    }
+}
+
+@media screen and (max-width: 672px) , (max-height: 520px) {
+    
+    .contain-fluid-rank.auto-responsive .item-fluid-rank {
+        
+        width: 26px!important;
+        height: 26px!important;
+    }
+}
