@@ -24,7 +24,7 @@ const fluidRankInit = ({
     autoResponsive
 }) => {
 
-    if( !document && !window ) {
+    if( !document || !window ) {
         throw `wrong you have called fluidRank function before load DOM`;
     }
 
