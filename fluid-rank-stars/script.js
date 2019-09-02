@@ -2,7 +2,8 @@
  * fluid-rank-stars dev file 
  *
  * <@author sam.gabor@hotmail.com>
- * git [https://github.com/Orivoir]
+ * git profil [https://github.com/Orivoir]
+ * git repositorie [https://github.com/Orivoir/fluid-rank-stars/]
  * homepage [https://orivoir.github.io/profil-reactjs]
  * 
  * write with <3 && JavaScript ;
