@@ -6,5 +6,5 @@
 * ### [script cdn](https://orivoir.github.io/fluid-rank-stars/fluid-rank-stars/script.js)
 * ### [style cdn](https://orivoir.github.io/fluid-rank-stars/fluid-rank-stars/style.css)
 * ### [usage](https://orivoir.github.io/fluid-rank-stars/usage/index.html)
-        
+* ### [exemple integrate](https://orivoir.github.io/reactjs-transition-page/#/about)        
   
