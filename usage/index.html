@@ -7,20 +7,27 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Usage fluid rank stars</title>
         <link rel="stylesheet"href="https://orivoir.github.io/fluid-rank-stars/fluid-rank-stars/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="index.css">
+
     </head>
     
     <body>
 
         <main>
 
-            <header>
-                <h1>
-                    Rankjs <small>fast usage</small>
-                </h1>
-                <blockquote>Rankjs is a micro-library genrate an rank systeme stars item</blockquote>
-
-                <div>
+            <header class="jumbotron">
+                <div class="text-center">
+                    <h1>
+                        Rankjs <small>fast usage</small>
+                    </h1>
+                    <blockquote class="text-primary">Rankjs is a micro-library genrate an rank systeme stars item</blockquote>
+                </div>
+                    
+                <div class="text-center">
                     <ul class="contain-fluid-rank flex auto-responsive">
                         <li class="item-fluid-rank"> 
                         <li class="item-fluid-rank"> 
@@ -30,11 +37,11 @@
                         <!-- ... , -->  
                     </ul>
 
-                    <p id="rank-val"></p>
+                    <p id="rank-val">0 / 5</p>
                 </div>
             </header>
 
-            <article>
+            <article class="contain">
                 
                 <section>
 
@@ -102,7 +109,7 @@ document.<span class="tag">addEventListener</span>(<span class="string">'DOMCont
                     </p>
 
                     <p>
-                        in developement
+                        recent add
                         one method event live <span class="tag">onChange</span> ,<br>
 
                         illustre (.js) :
@@ -127,9 +134,13 @@ document.<span class="tag">addEventListener</span>(<span class="string">'DOMCont
                 } ,
 
                 
-                <span class="comment">// this attribute is not accept today this is illustre</span>
+                <span class="comment">// onChange attribute is now accept</span>
                 <span class='attr'>onChange</span>: function( data ) {
         
+                    <span class="comment">// data.contain [Node] </span>
+                    <span class="comment">// data.contain.fluidRankState [Object] (state of contain rank) </span>
+                    <span class="comment">// data.rank [Number|String] </span>
+                    <span class="comment">// data.stars [NodeList] </span>
                     <span class="comment">// exec after change rank on mousemove</span>
                     data.contain.tooltip( data.currentRank ) ;
                 }
@@ -146,7 +157,7 @@ document.<span class="tag">addEventListener</span>(<span class="string">'DOMCont
 
         </main>
 
-        <script src="https://orivoir.github.io/fluid-rank-stars/fluid-rank-stars/script.js"></script>
+        <script src="./../fluid-rank-stars/script.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded' , () => {
 
@@ -164,9 +175,14 @@ document.<span class="tag">addEventListener</span>(<span class="string">'DOMCont
                 onValid: function( data ) {
 
 
-                    document.querySelector('#rank-val').textContent = (data.rank + ' / ' + data.stars.length) ; 
+                    document.querySelector('#rank-val').textContent = ((data.rank).toFixed(2) + ' / ' + data.stars.length) ; 
                     data.contain.style.display = "none";
                     console.log( 'you have valid an rank , data : '  , data );
+                } ,
+
+                onChange: function( data ) {
+
+                    document.querySelector('#rank-val').textContent = ( (data.rank).toFixed(2) + '/' + data.stars.length ) ;
                 }
             }) ;
 

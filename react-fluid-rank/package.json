@@ -1,0 +1,25 @@
+{
+  "name": "react-fluid-rank",
+  "version": "0.1.0",
+  "description": "fluid rank system for Reactjs",
+  "main": "Rank.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/Orivoir/react-fluid-rank.git"
+  },
+  "keywords": [
+    "rank",
+    "fuild",
+    "react",
+    "reactjs",
+    "js",
+    "module",
+    "npm",
+    "library"
+  ],
+  "author": "Orivoir",
+  "license": "ISC"
+}

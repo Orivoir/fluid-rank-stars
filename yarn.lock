@@ -234,6 +234,11 @@ query-string@^4.1.0:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
+react-fluid-rank@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-fluid-rank/-/react-fluid-rank-0.1.0.tgz#3464af26d562ae0e8114d76789278e880e5c451c"
+  integrity sha512-J5YkG5vl04xxJiFyQFwm6Hjnxx4IEE7l7KQ6xjZ69CXbqHXuRFgogKTYgS1pBN+ytdDnTHJ7+/6h7lhxcE5uuA==
+
 rimraf@^2.6.2:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"

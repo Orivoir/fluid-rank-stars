@@ -20,6 +20,7 @@ const fluidRankInit = ({
     background ,
     size ,
     onValid ,
+    onChange ,
     flex ,
     autoResponsive
 }) => {
@@ -39,7 +40,7 @@ const fluidRankInit = ({
      * save in the property window object 
      */
     window.initRankProperties( {
-        background , size , onValid , flex , autoResponsive
+        background , size , onValid , flex , autoResponsive , onChange
     } ) ;
 
     if( !contains || !contains.length )
@@ -118,6 +119,7 @@ const onDocumentMove = e => {
             rank: null,
             isRanked: false , /* status valid rank*/
             stars: contain.querySelectorAll( '.item-fluid-rank' ) ,
+            
             onActiveStars: function() {
 
                 if( this.isRanked )
@@ -138,19 +140,10 @@ const onDocumentMove = e => {
                             key = parseInt( this.getAttribute('data-key') )
                         ;
 
-                        /**
-                         * active before star.s
-                         */
-                        Array.from( Array( (key) ).keys() ).map( key => (
-                            contain.querySelector(`.item-fluid-rank[data-key="${key}"]`).style.background = window.fluidRankProperties.background[1] 
-                        ) ) ;
-                                
-                        /**
-                         * down after star.s
-                         */
-                        Array.from( Array( ( contain.fluidRankState.stars.length -key) ).keys() , x=> x+key ).map( key => (
-                            contain.querySelector(`.item-fluid-rank[data-key="${key}"]`).style.background = window.fluidRankProperties.background[0] 
-                        ) ) ;
+                        // resolve items alternate
+                        window.fluidRankResolveItems( contain , key );
+
+                        const lastOpened = _this.currentOpened ;
 
                         _this.currentOpened.all = key ; // number stars full mouseover
                         this.style.background = `linear-gradient(.25turn , ${window.fluidRankProperties.background[1]} ${pct}%, ${window.fluidRankProperties.background[0]} ${100-pct}% )` ;
@@ -159,17 +152,33 @@ const onDocumentMove = e => {
                         /**
                          * stabilize out point of linear gradient;
                          */
-                        if( pct >= 72 ) {
+                        if( pct >= 85 ) {
 
                             this.style.background =  window.fluidRankProperties.background[1] ;                
                             _this.currentOpened.partial = 0;
                             _this.currentOpened.all++ ;
 
-                        } else if( pct <= 22 ) {
+                        } else if( pct <= 15 ) {
                             
                             this.style.background = window.fluidRankProperties.background[0] ;
                             _this.currentOpened.partial = 0;
                             _this.currentOpened.all--;
+                        }
+
+                        if( _this.currentOpened.all < 0 ) // protect integrity
+                            _this.currentOpened.all = 0;
+
+                        if( lastOpened.all === _this.currentOpened.all || lastOpened.partial === _this.currentOpened.partial ) {
+                            
+                            const rank = window.getCurrentFluidRank( _this.currentOpened ) ;
+                            
+                            window.fluidRankProperties.onChange(
+                                {
+                                    rank: rank,
+                                    contain: contain ,
+                                    stars: contain.fluidRankState.stars 
+                                }
+                            );
                         }
 
                     } ) ;
@@ -185,7 +194,7 @@ const onDocumentMove = e => {
 
                     if( _this.isRanked ) return ; /* user already valid this rank */
 
-                    const rank = _this.currentOpened.all + ((parseInt(_this.currentOpened.partial) / 100)) ;
+                    const rank = window.getCurrentFluidRank( _this.currentOpened ) ;
 
                     if( typeof rank === 'number' && !isNaN( rank ) ) {
                         _this.isRanked = true ;
@@ -273,6 +282,28 @@ const onDocumentMove = e => {
                 properties.onChange :
                 () => {/* silence is <feature /> */}
         } ;
+    } ,
+
+    w.fluidRankResolveItems = function( contain , key ) {
+
+        /**
+         * active before star.s
+         */
+        Array.from( Array( (key) ).keys() ).map( key => (
+            contain.querySelector(`.item-fluid-rank[data-key="${key}"]`).style.background = window.fluidRankProperties.background[1] 
+        ) ) ;
+                
+        /**
+         * down after star.s
+         */
+        Array.from( Array( ( contain.fluidRankState.stars.length -key) ).keys() , x=> x+key ).map( key => (
+            contain.querySelector(`.item-fluid-rank[data-key="${key}"]`).style.background = window.fluidRankProperties.background[0] 
+        ) ) ;
+    } ,
+
+    w.getCurrentFluidRank = function( currentOpened ) {
+
+        return ( currentOpened.all + ( ( parseInt( currentOpened.partial ) / 100 ) ) ) ;
     }
 
 } )( window ) ;

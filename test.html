@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="./fluid-rank-stars/style.css">
+        <title>test</title>
+    </head>
+    <body>
+        
+        <main>
+
+            <ul class="contain-fluid-rank flex auto-responsive" id="id-this-rank-contain" >
+                <li class="item-fluid-rank"></li>
+                <li class="item-fluid-rank"></li>
+                <li class="item-fluid-rank"></li>
+                <li class="item-fluid-rank"></li>
+                <li class="item-fluid-rank"></li>
+            </ul>
+
+        </main>
+
+        <script src="./fluid-rank-stars/script.js" ></script>
+
+        <script>
+            
+            fluidRankInit( {
+
+                background: {} ,
+
+                onValid: function( data ) {
+
+                    console.log( data );
+                } ,
+
+                onChange: function( data ) {
+
+
+                }
+
+            } ) ;
+
+        
+        </script>
+
+    </body>
+</html>
